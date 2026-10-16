@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>太鼠達人</title>
+  <meta name="description" content="辦公室養貓專用：螢幕上的紅老鼠逗貓神器。">
+  <meta name="theme-color" content="#e8452c">
+  <link rel="icon" href="assets/mouse.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 首頁 -->
+  <section id="menu" class="screen active">
+    <div class="menu-inner">
+      <div class="logo">
+        <div class="logo-drum"><img src="assets/mouse.svg" alt=""></div>
+        <h1><span>太</span><span>鼠</span><span>達</span><span>人</span></h1>
+        <p class="subtitle">Nezumi no Tatsujin ・ 喵星人認證逗貓神器</p>
+      </div>
+
+      <button class="start-btn" id="start">
+        <span class="emoji">🐱</span>
+        <span class="label">開始逗貓</span>
+        <span class="desc">全螢幕、紅老鼠滿螢幕亂竄，給主子拍</span>
+      </button>
+
+      <div class="options">
+        <label>老鼠速度
+          <select id="opt-speed">
+            <option value="1">悠哉</option>
+            <option value="2" selected>正常</option>
+            <option value="3">閃電</option>
+          </select>
+        </label>
+        <label>老鼠數量
+          <select id="opt-count">
+            <option value="1" selected>1 隻</option>
+            <option value="2">2 隻</option>
+            <option value="3">3 隻</option>
+          </select>
+        </label>
+        <label>背景音樂
+          <select id="opt-song">
+            <option value="">不放（貓比較專心）</option>
+            <option value="catsong">Catsong</option>
+            <option value="clappy">Happy Clappy Loop</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="opt-squeak" checked> 吱吱聲</label>
+      </div>
+
+      <details class="howto">
+        <summary>怎麼玩？</summary>
+        <p>按「開始逗貓」會進全螢幕、游標會藏起來。老鼠會自己亂跑、停下來抖、偶爾吱吱叫。貓（或你）點到老鼠就算抓到，老鼠會先逃出畫面再從別的地方冒出來。</p>
+        <p>按 <kbd>M</kbd> 切換「手動遛鼠」：老鼠跟著游標走，就像同事拿滑鼠在逗貓。
+          <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 調速度、<kbd>S</kbd> 吱吱聲開關、<kbd>F</kbd> 全螢幕、<kbd>Esc</kbd> 回首頁。</p>
+        <p>觸控螢幕最好玩：貓的肉球拍到老鼠也會算數。</p>
+      </details>
+
+      <footer class="credits">
+        音樂：<a href="https://opengameart.org/content/catsong" target="_blank" rel="noopener">Catsong</a> by Dan Knoflicek（CC0）、
+        <a href="https://opengameart.org/content/happy-clappy-loop" target="_blank" rel="noopener">Happy Clappy Loop</a> by OwlishMedia（CC0）・
+        音效：<a href="https://kenney.nl/assets/impact-sounds" target="_blank" rel="noopener">Kenney</a>（CC0），吱吱聲為 Web Audio 即時合成
+      </footer>
+    </div>
+  </section>
+
+  <!-- 逗貓畫面 -->
+  <section id="cat" class="screen">
+    <div class="hud cat-hud">
+      <div class="counter">抓到 <b id="cat-count">0</b> 隻</div>
+      <div class="hint">Esc 回首頁・M 手動遛鼠・1/2/3 速度・S 聲音・F 全螢幕</div>
+    </div>
+    <div class="toast" id="cat-toast"></div>
+  </section>
+
+  <template id="mouse-tpl">
+    <div class="mouse-sprite">
+      <svg viewBox="0 0 200 110" aria-hidden="true">
+        <!-- 鼻子朝左。尾巴拆出來才能擺動 -->
+        <path fill="currentColor" d="M8 78 C 20 60, 52 40, 92 38 C 132 36, 152 54, 152 74 C 152 90, 140 98, 120 98 L 44 98 C 26 98, 12 90, 8 84 Z"/>
+        <circle fill="currentColor" cx="88" cy="30" r="24"/>
+        <path fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" d="M 100 16 C 110 24, 110 40, 100 48" opacity=".9"/>
+        <ellipse fill="#fff" cx="38" cy="68" rx="5" ry="6"/>
+        <circle fill="currentColor" cx="8" cy="80" r="5"/>
+        <g class="tail"><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" d="M 150 80 C 168 80, 170 64, 180 72 C 190 80, 182 98, 196 96"/></g>
+      </svg>
+    </div>
+  </template>
+
+  <script src="game.js"></script>
+</body>
+</html>
